@@ -8,6 +8,9 @@ import {Provider} from 'react-redux'
 import rootReducer from './module';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+// import Auth from './api/client';
+
+// const auth = new Auth();
 
 const store = createStore(
   rootReducer,

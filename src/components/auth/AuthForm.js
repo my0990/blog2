@@ -32,8 +32,10 @@ const Spacer = styled.div`
     height: 1rem;
 `
 
-const AuthForm = ({type, onChange}) => {
-
+const AuthForm = ({type, onChange, auth}) => {
+    const onLogin = (e) => {
+        auth.login(e.target.textContent).then(console.log);
+    }
 
     return (
         // <AuthTemplate>
@@ -49,6 +51,7 @@ const AuthForm = ({type, onChange}) => {
                     <Link to="/register">
                         <Button>회원가입</Button>
                     </Link>
+                    <Button>구글로 로그인</Button>
                 </footer>
             </AuthBlock>
 
