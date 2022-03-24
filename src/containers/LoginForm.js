@@ -3,6 +3,7 @@ import AuthTemplate from "../components/auth/AuthTemplate";
 import { changeField, initialForm } from "../module/auth";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { signInGoogle } from "../api/firebase_config";
 
 
 const LoginForm = () => {
@@ -25,12 +26,12 @@ const LoginForm = () => {
         dispatch(initialForm('login'))
     },[dispatch]
     )
-
-
+    
+ 
 
     return(
         <AuthTemplate>
-            <AuthForm type={'login'} onChange={onChange}/>
+            <AuthForm type={'login'} onChange={onChange} onLogin={signInGoogle}/>
         </AuthTemplate>
     )
 }

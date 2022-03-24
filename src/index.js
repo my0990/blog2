@@ -8,9 +8,9 @@ import {Provider} from 'react-redux'
 import rootReducer from './module';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import Auth from './api/client';
 
-// const auth = new Auth();
+
+
 
 const store = createStore(
   rootReducer,
@@ -20,7 +20,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}> 
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

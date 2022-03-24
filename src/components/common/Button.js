@@ -13,9 +13,9 @@ const StyledButton = styled.button`
     }
 `
 
-const Button = ({children}) => {
+const Button = ({children, ...rest}) => {
     return(
-        <StyledButton>
+        <StyledButton {...rest}>
             {children}
         </StyledButton>
     )

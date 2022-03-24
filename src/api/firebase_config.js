@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvier } from "firebase/auth";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 
 
 
@@ -15,21 +15,20 @@ const firebaseConfig = {
   measurementId: "G-WL0F4B9JRH"
 };
 
-// Initialize Firebase
-const App = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvier();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-const auth = getAuth();
-signInWithPopup(auth,provider)
-  .then((result) => {
-    const credential = GoogleAuthProvier.credentialFromResult(result);
-    const token = credential.accessToken;
-    const user = result.user;
-  }).catch((error) => {
-    const errorCode = error.code;
-  })
+export const auth=firebaseApp.auth();
 
+// export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const signInGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return auth.signInWithPopup(provider)
+}
 
-
-
-// export const googleProvider = new auth.GoogleAuthProvider();
+auth.onAuthStateChanged((user) => {
+  if(user){
+    console.log(user.displayName)
+  } else {
+    console.log('no user')
+  }
+})

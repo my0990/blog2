@@ -3,6 +3,7 @@ import styled from "styled-components"
 import palatte from "../../lib/style/palatte"
 import Button from "../common/Button"
 import { Link } from "react-router-dom"
+import { loginGoogle } from "../../api/firebase_config"
 
 const AuthBlock = styled.div`
     width: 100%;
@@ -32,10 +33,8 @@ const Spacer = styled.div`
     height: 1rem;
 `
 
-const AuthForm = ({type, onChange, auth}) => {
-    const onLogin = (e) => {
-        auth.login(e.target.textContent).then(console.log);
-    }
+const AuthForm = ({type, onChange, onLogin}) => {
+
 
     return (
         // <AuthTemplate>
@@ -51,7 +50,9 @@ const AuthForm = ({type, onChange, auth}) => {
                     <Link to="/register">
                         <Button>회원가입</Button>
                     </Link>
-                    <Button>구글로 로그인</Button>
+                    <Button onClick={onLogin}>구글로 로그인</Button>
+                    
+                    
                 </footer>
             </AuthBlock>
 
