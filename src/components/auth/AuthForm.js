@@ -33,7 +33,7 @@ const Spacer = styled.div`
     height: 1rem;
 `
 
-const AuthForm = ({type, onChange, onLogin}) => {
+const AuthForm = ({type, onChange, onLogin, onLogout}) => {
 
 
     return (
@@ -51,7 +51,7 @@ const AuthForm = ({type, onChange, onLogin}) => {
                         <Button>회원가입</Button>
                     </Link>
                     <Button onClick={onLogin}>구글로 로그인</Button>
-                    
+                    <Button onClick={onLogout}>구글 로그아웃</Button>
                     
                 </footer>
             </AuthBlock>

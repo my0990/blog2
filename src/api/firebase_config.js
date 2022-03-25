@@ -25,6 +25,10 @@ export const signInGoogle = () => {
   return auth.signInWithPopup(provider)
 }
 
+export const singOutGoogle = () => {
+  return auth.signOut()
+}
+
 auth.onAuthStateChanged((user) => {
   if(user){
     console.log(user.displayName)

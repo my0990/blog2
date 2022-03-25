@@ -1,12 +1,15 @@
 import AuthForm from "../components/auth/AuthForm";
 import AuthTemplate from "../components/auth/AuthTemplate";
 import { changeField, initialForm } from "../module/auth";
+import { setUsername } from "../module/user";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { signInGoogle } from "../api/firebase_config";
+import { signInGoogle, singOutGoogle } from "../api/firebase_config";
+import { useNavigate} from "react-router-dom";
 
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {form} = useSelector(({auth}) => ({
         form: auth.login
@@ -26,12 +29,15 @@ const LoginForm = () => {
         dispatch(initialForm('login'))
     },[dispatch]
     )
-    
+    const onLogin = async () => {
+        await signInGoogle().then(()=>{navigate('/')}).then(()=>{dispatch(setUsername('test'))})
+
+    }
  
 
     return(
         <AuthTemplate>
-            <AuthForm type={'login'} onChange={onChange} onLogin={signInGoogle}/>
+            <AuthForm type={'login'} onChange={onChange} onLogin={onLogin} onLogout={singOutGoogle}/>
         </AuthTemplate>
     )
 }
