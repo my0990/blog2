@@ -60,7 +60,7 @@ const ImgSlide = () => {
                     <SlideButton onClick={rightClicked}>▶</SlideButton>
                 </Wrapper>
 
-                {console.log(slideCount)}
+
             </ ImgSlideBlock>
         </>
     )

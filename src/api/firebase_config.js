@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import "firebase/compat/firestore"
 
 
 
@@ -25,14 +26,16 @@ export const signInGoogle = () => {
   return auth.signInWithPopup(provider)
 }
 
-export const singOutGoogle = () => {
+export const signOutGoogle = () => {
   return auth.signOut()
 }
 
-auth.onAuthStateChanged((user) => {
-  if(user){
-    console.log(user.displayName)
-  } else {
-    console.log('no user')
-  }
-})
+export const firestore = firebase.firestore();
+
+// auth.onAuthStateChanged((user) => {
+//   if(user){
+//     console.log(user.displayName)
+//   } else {
+//     console.log('no user')
+//   }
+// })

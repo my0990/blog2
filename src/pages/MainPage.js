@@ -1,14 +1,10 @@
-import Header from "../components/common/Header";
-import ImgSlide from "../components/common/ImgSlide";
-import Board from "../containers/Board";
+import MainContainer from '../containers/MainContainer';
 
 
 const MainPage = () => {
     return (
         <>
-            <Header />
-            <ImgSlide />
-            <Board />
+            <MainContainer />
         </>
     )
 }

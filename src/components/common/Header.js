@@ -24,7 +24,7 @@ const Wrapper = styled(Responsive)`
 
 
     .left{
-        width: 11rem;
+        
     }
     .category {
         flex: 1;
@@ -40,7 +40,7 @@ const Wrapper = styled(Responsive)`
 
     }
     .right{
-        
+        cursor: pointer;
     }
 
 `
@@ -82,7 +82,7 @@ const Spacer = styled.div`
     height: 4rem;
 `
 
-const Header = () => {
+const Header = ({onLogout,username}) => {
     const [isMobile,setIsMobile] = useState(false);
     const [test,setTest] = useState(false)
     const resizingHandler = () => {
@@ -106,7 +106,7 @@ const Header = () => {
         <>
             <HeaderBlock>
                 <Wrapper>
-                    <div className="left"><b>my0990</b>님 환영합니다</div>
+                    <div className="left"><b>{username}</b>님 환영합니다</div>
                     {!isMobile ? 
                     <>
                     <div className="category">
@@ -116,7 +116,7 @@ const Header = () => {
                             <li>게시판3</li>
                         </ul>
                     </div>
-                    <div className="right">로그아웃</div>
+                    <div className="right" onClick={onLogout}>로그아웃</div>
                     </> :
                      <MenuImg />
                     }

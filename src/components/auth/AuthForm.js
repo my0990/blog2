@@ -41,7 +41,7 @@ const AuthForm = ({type, onChange, onLogin, onLogout}) => {
         //     <h3 className="logo">{type}</h3>
             <AuthBlock>
                 <h2>로그인</h2>
-                <StyledInput onChange={onChange} name="username" placeholder="아이디" name="username"/>
+                <StyledInput onChange={onChange} name="username" placeholder="아이디"/>
                 <StyledInput onChange={onChange} name="password" placeholder="비밀번호"/>
                 <Spacer/>
                 <footer>

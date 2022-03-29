@@ -6,9 +6,7 @@ import { useEffect } from "react";
 
 const RegisterContainer = () => {
     const dispatch = useDispatch();
-    const {form} = useSelector(({auth}) => ({
-        form: auth.register,
-    }))
+
     const onChange = e => {
         const {name, value} = e.target;
         dispatch(changeField({
