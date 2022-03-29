@@ -1,7 +1,12 @@
+import PostForm from "../components/post/PostForm";
+import PostTemplate from "../components/post/PostTemplate";
+
 const FirstPostPage = () => {
     return(
         <>
-            <h1>게시판 1</h1>
+            <PostTemplate>
+                <PostForm />
+            </PostTemplate>
         </>
     )
     
