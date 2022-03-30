@@ -1,12 +1,10 @@
-import PostForm from "../components/post/PostForm";
-import PostTemplate from "../components/post/PostTemplate";
+import FirstPostContainer from "../containers/FirstPostContainer";
+
 
 const FirstPostPage = () => {
     return(
         <>
-            <PostTemplate>
-                <PostForm />
-            </PostTemplate>
+            <FirstPostContainer />
         </>
     )
     

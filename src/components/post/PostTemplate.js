@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import palatte from "../../lib/style/palatte";
+import Responsive from "../common/Responsive";
 
 const PostTemplateBlock = styled.div`
     position: absolute;
@@ -14,10 +15,18 @@ const PostTemplateBlock = styled.div`
     background-color: ${palatte.orange[3]};
 `
 
+const PostFormBlock = styled(Responsive)`
+    background: ${palatte.orange[2]}
+`
 
-const PostTemplate = ({...rest}) => {
+
+const PostTemplate = ({ children, ...rest}) => {
     return(
-        <PostTemplateBlock {...rest}></PostTemplateBlock>
+        <PostTemplateBlock >
+            <PostFormBlock  {...rest} >
+                {children}
+            </PostFormBlock>
+        </PostTemplateBlock>
     )
 }
 

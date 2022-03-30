@@ -10,7 +10,7 @@ const PostWrapper = styled.div`
     height: 2rem;
     display: flex;
     text-align: center;
-    .title-bar{
+    .post{
         text-align: start;
     }
 
@@ -19,11 +19,9 @@ const PostWrapper = styled.div`
     }
     .username{
         flex: 1;
-        display: none;
     }
     .date{
         flex: 1;
-        display: none;
     }
 `
 
@@ -37,36 +35,10 @@ const PostForm = () => {
                <div className="date">날짜</div>
             </PostWrapper>
             <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
+               <div className="title post">안녕하세요</div>
                <div className="username">my0990@naver.com</div>
                <div className="date">2022/03/30</div>
             </PostWrapper>
-            <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
-               <div className="username">my0990@naver.com</div>
-               <div className="date">2022/03/30</div>
-            </PostWrapper>
-            <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
-               <div className="username">my0990@naver.com</div>
-               <div className="date">2022/03/30</div>
-            </PostWrapper>
-            <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
-               <div className="username">my0990@naver.com</div>
-               <div className="date">2022/03/30</div>
-            </PostWrapper>
-            <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
-               <div className="username">my0990@naver.com</div>
-               <div className="date">2022/03/30</div>
-            </PostWrapper>
-            <PostWrapper>
-               <div className="title title-bar">안녕하세요</div>
-               <div className="username">my0990@naver.com</div>
-               <div className="date">2022/03/30</div>
-            </PostWrapper>
-
         </PostFormBlock>
     )
 }
