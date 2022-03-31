@@ -40,12 +40,13 @@ const EditorContainer = () => {
     const onSubmit = () => {
         const {username,uid} = JSON.parse(localStorage.getItem("user"));
         console.log(title,content)
+        let date = new Date()
         db.add({
             username: username,
             uid: uid,
             title: title,
             content: content,
-            date: new Date
+            date: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
         })
     }
     return(

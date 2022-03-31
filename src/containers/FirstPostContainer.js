@@ -35,18 +35,15 @@ const FirstPostContainer = () => {
             <PostBar />
             <Post />
             {tasks.map((a,i)=>{
-                {console.log(typeof(a.date.toDate()))}
                 return(
                     <Post 
                         username={a.username}
                         content={a.content}
-                        
+                        date={a.date}
                         title= {a.title}
-                        uid= {a.uid}
-                        key= {a.uid} />
+                        key= {i}/>
                 )
             })}
-            
         </PostTemplate> 
     )
 }

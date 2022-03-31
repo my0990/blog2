@@ -11,7 +11,7 @@ const Container = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: 4rem;
     bottom: 0;
     background: ${palatte.orange[2]};  
 `
@@ -49,7 +49,6 @@ const ButtonWrapper = styled.div`
 const EditorForm = ({onChangeContent, onTitleChange, onSubmit}) => {
     return(
         <Container>
-            <Header username={'test'} />
             <Wrapper>
                 <TitleWrapper placeholder='제목을 입력하세요' onChange={onTitleChange}/>
                 <EditorComponent onChangeContent={onChangeContent}/>

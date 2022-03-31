@@ -27,7 +27,7 @@ const MainContainer = () => {
     
     return(
         <>
-        <Header onLogout={onLogout} username={username}/>
+        {/* <Header onLogout={onLogout} username={username}/> */}
         <ImgSlide />
         <BoardTemplate>
             <BoardForm title="게시판1"></BoardForm>

@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import palatte from "../../lib/style/palatte";
 
 
-const HeaderBlock = styled.div`
+
+const HeaderBlock = styled.header`
     position: fixed;
     margin: 0 auto;
     background-color: ${palatte.orange[4]};
@@ -128,6 +129,7 @@ const Header = ({onLogout,username}) => {
                 
             </HeaderBlock>
             <Spacer />
+
         </>
     )
 }
