@@ -11,15 +11,17 @@ const Container = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    top: 4rem;
+    top: 0;
     bottom: 0;
     background: ${palatte.orange[2]};  
+    min-height: 700px;
 `
 
 const Wrapper = styled(Responsive)`
     background: ${palatte.orange[1]};   
-    margin-top: 2rem;
+    margin-top: 8rem;
     border-radius: 20px;
+    height: 60%;
     .ql-container{ 
         font-size: 1rem;
         padding: none;
@@ -41,7 +43,7 @@ const TitleWrapper = styled.input`
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    // margin-top: 2rem;
 `
 
 

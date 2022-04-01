@@ -42,9 +42,9 @@ class EditorComponent extends Component{
 
         
         return(
-            <div style={{height:"500px"}}>
+            <div style={{height:"90%"}}>
                 <ReactQuill 
-                    style={{height: "500px"}} 
+                    style={{height: "100%"}} 
                     theme="bubble" 
                     modules={this.modules} 
                     formats={this.formats} 

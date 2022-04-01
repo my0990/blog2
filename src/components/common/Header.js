@@ -11,6 +11,7 @@ const HeaderBlock = styled.header`
     background-color: ${palatte.orange[4]};
     height: 4rem;
     width: 100%;
+    z-index: 999;
 `
 
 const Wrapper = styled(Responsive)`
