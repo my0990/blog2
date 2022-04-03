@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 const FirstPostContainer = () => {
     const [tasks,setTasks] = useState([])
-    const db = firestore.collection("blog")
+    const db = firestore.collection("blog").orderBy("timeStamp","desc")
     const fetchData = ()=>{
         let tasksData = [];
 
@@ -20,6 +20,7 @@ const FirstPostContainer = () => {
                     date: doc.data().date,
                     title: doc.data().title,
                     uid: doc.data().uid,
+                    id: doc.id,
                 });
             });
             setTasks((prevTasks) => prevTasks.concat(tasksData))
@@ -33,7 +34,7 @@ const FirstPostContainer = () => {
     return(
         <PostTemplate>
             <PostBar />
-            <Post />
+
             {tasks.map((a,i)=>{
                 return(
                     <Post 
@@ -41,7 +42,8 @@ const FirstPostContainer = () => {
                         content={a.content}
                         date={a.date}
                         title= {a.title}
-                        key= {i}/>
+                        key= {i}
+                        id={a.id}/>
                 )
             })}
         </PostTemplate> 

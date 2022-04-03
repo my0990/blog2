@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import palatte from "../../lib/style/palatte";
 import Responsive from "../common/Responsive";
+import Sanitized from "../../lib/sanitized";
 
 const ViewContainer = styled.div`
     position: absolute;
@@ -28,6 +29,8 @@ const ViewTitle = styled(Responsive)`
     padding: 1rem;
     font-size: 2.5rem;
     position: relative;
+    display: flex;
+    align-items: flex-end;
 `
 
 const ViewContent = styled.div`
@@ -36,37 +39,34 @@ const ViewContent = styled.div`
 `
 
 const UserInfo = styled.div`
-    float: right;
-    height: 50%;
+    /* flex: 1; */
+    height: 60%;
     font-size: 1rem;
     line-height: 1rem;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    div{
-        padding: 0;
-        margin: 0;
-        
-
-    }
 `
 
-const View = () => {
+const TitleInfo = styled.div`
+    flex: 1;
+`
+
+const View = ({title,username,date,content}) => {
+
     return(
         <>
             <ViewContainer>
                     <ViewTitle> 
-                        곶감먹고싶다
+                        <TitleInfo>
+                            {title}
+                        </TitleInfo>
                         <UserInfo>
-                            <div>my0990</div>
-                            <div>2022/3/22</div>
+                            <div>{username}</div>
+                            <div>{date}</div>
                         </UserInfo>
                     </ViewTitle>
                 <ViewWrapper>
 
                     <ViewContent>
-                        난 곶감이 먹고싶다
-                        너도 곶감좋아해?
+                        <Sanitized html={content} />
                     </ViewContent>
                 </ViewWrapper>
             </ViewContainer>

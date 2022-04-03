@@ -2,6 +2,7 @@ import EditorForm from "../components/editor/EditorForm"
 import { changeField } from "../module/edit"
 import { useDispatch, useSelector } from "react-redux"
 import { firestore } from "../api/firebase_config"
+import { useNavigate } from "react-router-dom"
 
 
 //firestore 셋팅
@@ -36,7 +37,7 @@ const EditorContainer = () => {
     const title = useSelector(state => state.edit.title)
     const content = useSelector(state => state.edit.content)
     const body = useSelector(state => state.edit.content)
-
+    const navigate = useNavigate();
     const onSubmit = () => {
         const {username,uid} = JSON.parse(localStorage.getItem("user"));
         console.log(title,content)
@@ -46,8 +47,9 @@ const EditorContainer = () => {
             uid: uid,
             title: title,
             content: content,
-            date: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
-        })
+            date: date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate(),
+            timeStamp: date
+        }).then(alert('저장되었습니다.')).then((doc)=>navigate('/firstPostPage/view?id=' + doc.id,{replace: true}))
     }
     return(
         <>
