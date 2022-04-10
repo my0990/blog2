@@ -1,8 +1,10 @@
-import EditorForm from "../components/editor/EditorForm"
-import { changeField } from "../module/edit"
-import { useDispatch, useSelector } from "react-redux"
-import { firestore } from "../api/firebase_config"
-import { useNavigate } from "react-router-dom"
+import EditorForm from "../components/editor/EditorForm";
+import { changeField } from "../module/edit";
+import { useDispatch, useSelector } from "react-redux";
+import { firestore } from "../api/firebase_config";
+import { useNavigate } from "react-router-dom";
+import {collection, doc, getDoc, query, startAt } from "firebase/firestore";
+
 
 
 //firestore 셋팅
@@ -50,6 +52,7 @@ const EditorContainer = () => {
             date: date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate(),
             timeStamp: date
         }).then(alert('저장되었습니다.')).then((doc)=>navigate('/firstPostPage/view?id=' + doc.id,{replace: true}))
+        
     }
     return(
         <>

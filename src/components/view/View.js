@@ -60,7 +60,7 @@ const View = ({title,username,date,content}) => {
                         </TitleInfo>
                         <UserInfo>
                             <div>{username}</div>
-                            <div>{date}</div>
+                            <div style={{textAlign:'center'}}>{date}</div>
                         </UserInfo>
                     </ViewTitle>
                 <ViewWrapper>
