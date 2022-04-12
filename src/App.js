@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route  element={<HeaderContainer />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="/firstPostPage" element={<FirstPostPage />} />
+          {/* <Route path="/firstPostPage" element={<FirstPostPage />} /> */}
           <Route path="/edit" element={<Editor />} />
           <Route path="/firstPostPage/view" element={<ViewPage />} />
         </Route>

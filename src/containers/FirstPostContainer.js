@@ -1,91 +1,68 @@
-import Post,{PostBar} from "../components/post/Post";
-import PostTemplate from "../components/post/PostTemplate";
-import { firestore } from "../api/firebase_config";
-import { useState } from "react";
-import { useEffect } from "react";
-import { getDocs, limitToLast } from "firebase/firestore";
-import { queryByTestId } from "@testing-library/react";
+// import Post,{PostBar} from "../components/post/Post";
+// import PostTemplate from "../components/post/PostTemplate";
+// import { firestore } from "../api/firebase_config";
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import { getDocs, limitToLast } from "firebase/firestore";
+// import { queryByTestId } from "@testing-library/react";
 
 
-const FirstPostContainer =  () => {
-    const [tasks,setTasks] = useState([])
+// const FirstPostContainer =  () => {
+//     const [list,setList] = useState([])
+//     const [lastDoc,setLastDoc] = useState()
     
-    
 
-    useEffect(()=>{
-        const fetchData = async () => {
-            await firestore.collection('blog')
-            .orderBy('timeStamp','desc')
-            .limit(10)
-            .onSnapshot(function(querySnapshot){
-                let items = [];
-                querySnapshot.forEach(function(doc){
-                    items.push({
-                        username: doc.data().username,
-                        content: doc.data().content,
-                        date: doc.data().date,
-                        title: doc.data().title,
-                        uid: doc.data().uid,
-                        id: doc.id,
-                    });
-                    setTasks(items);
-                })
-            })
-        };
-        fetchData();
-    },[])
+//     useEffect(()=>{
+//         firestore
+//         .collection('blog')
+//         .orderBy('timeStamp','desc')
+//         .limit(10)
+//         .get()
+//         .then((collections) => {
+//             const tempList = collections.docs.map((list) => list.data())
+//             const tempLastDoc = collections.docs[collections.docs.length - 1];
+//             setList(tempList)
+//             setLastDoc(tempLastDoc)
+//         })
+//     },[])
 
-    
-    const pageDown = async ({item}) => {
-        if(tasks.length === 0) {
-            alert("Thats all we have for now!")
-        } else {
-            const fetchNextData = async () => {
-                await firestore.collection('blog')
-                .orderBy("timeStamp","desc")
-                .limit(10)
-                .startAfter(item.created)
-                .onSnapshot(function(querySnapshot){
-                    const items = [];
-                    querySnapshot.forEach(function(doc){
-                        items.push({
-                            username: doc.data().username,
-                            content: doc.data().content,
-                            date: doc.data().date,
-                            title: doc.data().title,
-                            uid: doc.data().uid,
-                            id: doc.id,
-                        });
-                        setTasks(items);
-                    })
-                })
-            };
-            fetchNextData();
-        }
-    }
+//     const fetchMore = () => {
+//         firestore
+//         .collection('blog')
+//         .orderBy("timeStamp","desc")
+//         .startAfter(lastDoc)
+//         .limit(10)
+//         .get()
+//         .then((collections)=>{
+//             const tempList = collections.docs.map((list) => list.data())
+//             const tempLastDoc = collections.docs[collections.docs.length - 1];
+//             setList(tempList)
+//             setLastDoc(tempLastDoc)
+//         })
+//     }
 
 
-
-    return(
-        <PostTemplate>
-            <PostBar />
-            {tasks.map((a,i)=>{
-                return(
+//     return(
+//         <>
+//         <PostTemplate onNext={fetchMore}>
+//             <PostBar />
+//             {list.map((a,i)=>{
+//                 return(
                     
-                        <Post 
-                            username={a.username}
-                            content={a.content}
-                            date={a.date}
-                            title= {a.title}
-                            key= {i}
-                            id={a.id}/>
+//                         <Post 
+//                             username={a.username}
+//                             content={a.content}
+//                             date={a.date}
+//                             title= {a.title}
+//                             key= {i}
+//                             id={a.id}/>
                     
-                )
-            })}
-            <button onClick={()=>{pageDown({item: tasks[tasks.length -1]})}}>test</button>
-            
-        </PostTemplate> 
-    )
-}
+//                 )
+//             })}
+//         </PostTemplate> 
+        
+//         </>
+//     )
+// }
 
-export default FirstPostContainer;
+// export default FirstPostContainer;

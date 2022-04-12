@@ -1,13 +1,13 @@
-import FirstPostContainer from "../containers/FirstPostContainer";
+// import FirstPostContainer from "../containers/FirstPostContainer";
 
 
-const FirstPostPage = () => {
-    return(
-        <>
-            <FirstPostContainer />
-        </>
-    )
+// const FirstPostPage = () => {
+//     return(
+//         <>
+//             <FirstPostContainer />
+//         </>
+//     )
     
-}
+// }
 
-export default FirstPostPage;
+// export default FirstPostPage;
