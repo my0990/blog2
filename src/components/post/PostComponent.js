@@ -4,24 +4,30 @@ import palatte from "../../lib/style/palatte";
 const PostTemplateBlock = styled.div`
     width: 100%;
     padding: 1rem;
+    background: ${palatte.orange[1]};
+    border-radius: 5px;
+    margin-top: 2rem;
     
-    margin-top: 1rem;
+
     .contentBox {
-        display: flex;
-        height: 30rem;
+        
+        
         div:nth-child(1){
-            flex: 3;
+            width: 100%;
+            height: 30rem;
             background-image: url('https://source.unsplash.com/random');
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
+            margin: 1rem 0;
         }
         div:nth-child(2){
-            flex: 1;
-            background-color: ${palatte.orange[3]};
+            
+
         }
     }
     .title {
+        border-bottom: 1px solid gray;
         h1{
             margin: 0;
         }
@@ -34,7 +40,6 @@ const PostComponent = () => {
         <PostTemplateBlock>
             <div className="title">
                 <h1>titles</h1>
-                
             </div>
             <div className="contentBox">
                 <div />

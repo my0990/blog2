@@ -5,7 +5,7 @@ import Responsive from "../common/Responsive"
 
 const MainTemplateBlock = styled(Responsive)`
     /* background-color: ${palatte.orange[3]}; */
-    display: flex;
+    // display: flex;
 `
 
 

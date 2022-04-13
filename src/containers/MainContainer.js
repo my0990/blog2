@@ -20,6 +20,7 @@ const MainContainer = () => {
         <>
             <MainComponent>
                 <PostComponent />
+                <PostComponent />
             </ MainComponent>
         </>
     )
