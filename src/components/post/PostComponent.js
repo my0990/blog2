@@ -3,49 +3,45 @@ import palatte from "../../lib/style/palatte";
 
 const PostTemplateBlock = styled.div`
     width: 100%;
-    padding: 1rem;
+    
     background: ${palatte.orange[1]};
     border-radius: 5px;
     margin-top: 2rem;
-    
-
-    .contentBox {
-        
-        
-        div:nth-child(1){
-            width: 100%;
-            height: 30rem;
-            background-image: url('https://source.unsplash.com/random');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            margin: 1rem 0;
-        }
-        div:nth-child(2){
-            
-
-        }
-    }
     .title {
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid ${palatte.orange[0]};
+        padding: 1rem;
         h1{
             margin: 0;
         }
         
     }
+
+    .contentBox {
+        text-align: center;
+        
+        img {
+            max-height: 70vh;
+            max-width: 100%;
+        }
+    }
+    .text {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
 `
 
-const PostComponent = () => {
+const PostComponent = ({title,username,src,text}) => {
     return(
         <PostTemplateBlock>
             <div className="title">
-                <h1>titles</h1>
+                <h1>{title}</h1>
+                <span>{username}</span>
             </div>
             <div className="contentBox">
-                <div />
-                <div>
-                    되는건가요
-                </div>
+                <img src={src}></img>
+            </div>
+            <div className="text">
+                {text}
             </div>
         </PostTemplateBlock>
     )
