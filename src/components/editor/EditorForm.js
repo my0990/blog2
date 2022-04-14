@@ -2,8 +2,6 @@ import EditorComponent from './EditorComponent'
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palatte from '../../lib/style/palatte';
-import Header from '../common/Header';
-import Button from '../common/Button';
 import EditorButton from './EditorButton';
 
 
@@ -14,6 +12,7 @@ const Container = styled.div`
     top: 4rem;
     bottom: 0;
     background: ${palatte.orange[2]};  
+    min-height: 900px;
 `
 
 const Wrapper = styled(Responsive)`
@@ -52,6 +51,7 @@ const EditorForm = ({onChangeContent, onTitleChange, onSubmit}) => {
             <Wrapper>
                 <TitleWrapper placeholder='제목을 입력하세요' onChange={onTitleChange}/>
                 <EditorComponent onChangeContent={onChangeContent}/>
+                <input type="file" />
                 <ButtonWrapper>
                     <EditorButton onClick={onSubmit} color={5}>등록</EditorButton>
                     <EditorButton onClick={()=>{console.log('test')}} color={3}>취소</EditorButton>
