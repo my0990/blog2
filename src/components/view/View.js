@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import palatte from "../../lib/style/palatte";
 import Responsive from "../common/Responsive";
-import Sanitized from "../../lib/sanitized";
+// import Sanitized from "../../lib/sanitized";
 
 const ViewContainer = styled.div`
     position: absolute;
@@ -66,7 +66,7 @@ const View = ({title,username,date,content}) => {
                 <ViewWrapper>
 
                     <ViewContent>
-                        <Sanitized html={content} />
+                        {/* <Sanitized html={content} /> */}
                     </ViewContent>
                 </ViewWrapper>
             </ViewContainer>

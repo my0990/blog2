@@ -45,20 +45,19 @@ const ButtonWrapper = styled.div`
 
 
 
-const EditorForm = ({onChangeContent, onTitleChange, onSubmit}) => {
+const EditorForm = ({onChangeContent, onTitleChange, onSubmit, fileChangeHandler}) => {
+
     return(
         <Container>
             <Wrapper>
                 <TitleWrapper placeholder='제목을 입력하세요' onChange={onTitleChange}/>
                 <EditorComponent onChangeContent={onChangeContent}/>
-                <input type="file" />
+                <input type="file" id='image' onChange={fileChangeHandler}/>
                 <ButtonWrapper>
                     <EditorButton onClick={onSubmit} color={5}>등록</EditorButton>
                     <EditorButton onClick={()=>{console.log('test')}} color={3}>취소</EditorButton>
                 </ButtonWrapper>
-                
             </Wrapper>
-            
         </Container>
     )
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { firestore } from "../api/firebase_config";
 
 
+
 // 로그인 되어 있으면 메인페이지 아니면 로그인 페이지 렌더
 const MainContainer = () => {
     const [list,setList] = useState([])

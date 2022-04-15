@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import palatte from "../../lib/style/palatte";
+import Sanitized from "../../lib/Sanitized";
 
 const PostTemplateBlock = styled.div`
     width: 100%;
@@ -41,7 +42,7 @@ const PostComponent = ({title,username,src,text}) => {
                 <img src={src}></img>
             </div>
             <div className="text">
-                {text}
+                <Sanitized html={text} />
             </div>
         </PostTemplateBlock>
     )
