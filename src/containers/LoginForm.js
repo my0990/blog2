@@ -13,7 +13,7 @@ import { auth } from "../api/firebase_config";
 
 
 const LoginForm = () => {
-
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const onChange = e => {
@@ -31,7 +31,7 @@ const LoginForm = () => {
     const userData = localStorage.getItem('user')
     if(userData){
         const {username, uid} = JSON.parse(userData)
-        console.log(username, uid)
+        
     }
     
     useEffect(() => {
@@ -57,6 +57,7 @@ const LoginForm = () => {
         return(
             <Routes>
                 <Route path="/" element={<Navigate replace to="/"/>} />
+                
             </Routes>
         )
     } else {

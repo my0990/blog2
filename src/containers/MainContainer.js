@@ -4,6 +4,8 @@ import PostComponent from "../components/post/PostComponent";
 import { useEffect, useState } from "react";
 import { firestore } from "../api/firebase_config";
 import fetch from "../lib/fetch";
+import { Route,Routes,Navigate, useNavigate } from "react-router-dom";
+import {useInView} from "react-intersection-observer";
 
 
 
@@ -11,48 +13,64 @@ import fetch from "../lib/fetch";
 const MainContainer = () => {
     const [list,setList] = useState([])
     const [lastKey,setLastKey] = useState()
-    const [nextPostsLoading,setNextPostsLoading] = useState(false);
+    const [loading,setLoading] = useState(false)
+    const [lastDoc,setLastDoc] = useState()
     const getUser = JSON.parse(localStorage.getItem("user"))
     let username
     let uid
+    const [ref,inView] = useInView();
     useEffect(()=>{
-        
         firestore
         .collection("post")
         .limit(3)
         .get()
         .then((collections)=>{
-            const tempList = collections.docs.map((list)=> list.data())
-            setList(tempList)
-            setLastKey(tempList[0].data().createdAt)
-            
+            const tempList = collections.docs.map((list)=> list.data());
+            const tempLastDoc = collections.docs[collections.docs.length -1];
+            setList(tempList);
+            setLastDoc(tempLastDoc);
         })
         
     
     
     },[])
-    const fetchMorePosts = (key) => {
-        if (key.length > 0) {
-            setNextPostsLoading(true);
-            firestore
-            .collection("posts")
-            .limit(3)
-            .get()
-            .then((collections)=>{
-                const tempList = collections.docs.map((list) => list.data())
-                setList(...list,...tempList)
-                setLastKey(collections)
-            })
-        }
+    const fetchMorePosts = () => {
+        
+        setLoading(true);
+        firestore
+        .collection("post")
+        .startAfter(lastDoc)
+        .limit(3)
+        .get()
+        .then((collections)=>{
+            const tempList = collections.docs.map((list) => list.data())
+            const tempLastDoc = collections.docs[collections.docs.length -1];
+            setList([...list,...tempList])
+            setLastDoc(tempLastDoc)
+        })
+        console.log(list)
+        
     }
-
+    useEffect(() => {
+        if(inView){
+            fetchMorePosts();
+            console.log('test')
+        } else {
+            console.log('inView false')
+        }
+    },[inView])
 
 
     if(getUser){
         username = getUser.username
         uid = getUser.uid
     } else {
-        return <LoginForm />
+        return(
+        <Routes>
+            <Route path="/" element={<Navigate replace to="/login" />} />
+        </Routes>
+        )
+        
     }
 
 
@@ -66,15 +84,34 @@ const MainContainer = () => {
                 {/* {list.map((a,i)=>{
                     console.log(a)
                 })} */}
-                {list.map((a,i)=>{
-                    return (
+                {list.map((a,i)=>(
+                    <div ref={ref}>
+                    {list.length-1 == i ? (
                         <PostComponent 
                             title={a.title} 
                             username={a.user}
                             src={a.url}
-                            text={a.content}/>
-                    )
-                })}
+                            text={a.content}
+                            key={i} 
+                            />
+                    ) : (
+                        <PostComponent 
+                            title={a.title} 
+                            username={a.user}
+                            src={a.url}
+                            text={a.content}
+                            key={i} 
+                            />
+                    )}</div>
+                    // return (
+                    //     <PostComponent 
+                    //         title={a.title} 
+                    //         username={a.user}
+                    //         src={a.url}
+                    //         text={a.content}
+                    //         key={i} />
+                    // )
+                ))}
                 {/* <PostComponent 
                     title={"title test"} 
                     username={"my0990@naver.com"}
