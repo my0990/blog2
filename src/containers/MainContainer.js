@@ -15,6 +15,7 @@ const MainContainer = () => {
     const [lastKey,setLastKey] = useState()
     const [loading,setLoading] = useState(false)
     const [lastDoc,setLastDoc] = useState()
+    const [isLast,setIsLast] = useState(false)
     const getUser = JSON.parse(localStorage.getItem("user"))
     let username
     let uid
@@ -47,12 +48,17 @@ const MainContainer = () => {
             const tempLastDoc = collections.docs[collections.docs.length -1];
             setList([...list,...tempList])
             setLastDoc(tempLastDoc)
+            if(tempLastDoc === undefined){
+                setIsLast(true)
+                console.log('last arrived')
+            }
         })
         console.log(list)
         
+        
     }
     useEffect(() => {
-        if(inView){
+        if(inView && !isLast){
             fetchMorePosts();
             console.log('test')
         } else {
@@ -117,7 +123,7 @@ const MainContainer = () => {
                     username={"my0990@naver.com"}
                     src={"https://source.unsplash.com/random"}
                     text={"text test"}/> */}
-                <button onClick={()=>fetchMorePosts(lastKey)}>test</button>
+                {/* <button onClick={()=>fetchMorePosts(lastKey)}>test</button> */}
             </ MainComponent>
             
         </>
