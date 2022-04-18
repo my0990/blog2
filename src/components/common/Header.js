@@ -18,14 +18,23 @@ const Wrapper = styled(Responsive)`
     height: 4rem;
     line-height: 4rem;
     margin: 0 auto;
-    display: flex;
+    // display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     font-size: 1rem;
     background-color: ${palatte.orange[4]};
     align-items: center;
-    
+    .left{
+        float: left;
+        overflow: hidden;
+    }
     .right{
+        float: right;
         cursor: pointer;
+        &:hover{
+            font-weight: bold;
+            // color: red;
+        }
     }
 
 `
@@ -70,7 +79,7 @@ const Header = ({onLogout,username}) => {
         <>
             <HeaderBlock>
                 <Wrapper>
-                    <div className="left"><b>{username}</b>님 환영합니다</div>
+                    <div className="left"><b>{username}</b>님</div>
                     <div className="right" onClick={onLogout}>로그아웃</div>
                 </Wrapper>   
             </HeaderBlock>

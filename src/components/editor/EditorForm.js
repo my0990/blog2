@@ -52,7 +52,7 @@ const EditorForm = ({onChangeContent, onTitleChange, onSubmit, fileChangeHandler
             <Wrapper>
                 <TitleWrapper placeholder='제목을 입력하세요' onChange={onTitleChange}/>
                 <EditorComponent onChangeContent={onChangeContent}/>
-                <input type="file" id='image' onChange={fileChangeHandler}/>
+                <input type="file" id='image' accept='image/*' onChange={fileChangeHandler}/>
                 <ButtonWrapper>
                     <EditorButton onClick={onSubmit} color={5}>등록</EditorButton>
                     <EditorButton onClick={()=>{console.log('test')}} color={3}>취소</EditorButton>

@@ -23,6 +23,7 @@ const MainContainer = () => {
     useEffect(()=>{
         firestore
         .collection("post")
+        .orderBy("timeStamp","desc")
         .limit(3)
         .get()
         .then((collections)=>{
@@ -40,6 +41,7 @@ const MainContainer = () => {
         setLoading(true);
         firestore
         .collection("post")
+        .orderBy("timeStamp","desc")
         .startAfter(lastDoc)
         .limit(3)
         .get()

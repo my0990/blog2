@@ -12,6 +12,9 @@ const AuthBlock = styled.div`
         text-align: center;
         color: #868e96;
     }
+    h2 {
+        text-align: center;
+    }
 `
 
 const StyledInput = styled.input`
@@ -40,18 +43,18 @@ const AuthForm = ({type, onChange, onLogin, onLogout}) => {
         // <AuthTemplate>
         //     <h3 className="logo">{type}</h3>
             <AuthBlock>
-                <h2>로그인</h2>
-                <StyledInput onChange={onChange} name="username" placeholder="아이디"/>
-                <StyledInput onChange={onChange} name="password" placeholder="비밀번호"/>
+                <h2>아카이브</h2>
+                {/* <StyledInput onChange={onChange} name="username" placeholder="아이디"/>
+                <StyledInput onChange={onChange} name="password" placeholder="비밀번호"/> */}
                 <Spacer/>
                 <footer>
-                    <Button>로그인</Button>
+                    {/* <Button>로그인</Button>
                     <div>or</div>
                     <Link to="/register">
                         <Button>회원가입</Button>
-                    </Link>
+                    </Link> */}
                     <Button onClick={onLogin}>구글로 로그인</Button>
-                    <Button onClick={onLogout}>구글 로그아웃</Button>
+                    {/* <Button onClick={onLogout}>구글 로그아웃</Button> */}
                     
                 </footer>
             </AuthBlock>

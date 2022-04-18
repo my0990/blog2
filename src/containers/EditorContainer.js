@@ -35,29 +35,42 @@ const EditorContainer = () => {
             })
         )
     }
-    
+    const [isSubmited,setIsSubmited] = useState(false)
     const title = useSelector(state => state.edit.title)
     const content = useSelector(state => state.edit.content)
     const body = useSelector(state => state.edit.content)
     const navigate = useNavigate();
-    const onSubmit = () => {
-        const {username,uid} = JSON.parse(localStorage.getItem("user"));
-        console.log(title,content)
-        let date = new Date()
+    const onSubmit = async () => {
+        if(!isSubmited){
+            setIsSubmited(true);
+            const {username,uid} = JSON.parse(localStorage.getItem("user"));
+            console.log(title,content)
+            let date = new Date()
 
-        if(file){
-            const storageRef = storage.ref();
-            const path = storageRef.child('image/'+file.name);
-            const upload = path.put(file)
-    
-            // 이미지 업로드
-            upload.on('state_changed',
-            null,
-            (error) => {
-                console.error('실패사유는', error);
-            },
-            () => {
-                upload.snapshot.ref.getDownloadURL().then((url)=>{
+            if(file){
+                const storageRef = storage.ref();
+                const path = storageRef.child('image/'+file.name);
+                const upload = path.put(file)
+        
+                // 이미지 업로드
+                upload.on('state_changed',
+                null,
+                (error) => {
+                    console.error('실패사유는', error);
+                },
+                () => {
+                    upload.snapshot.ref.getDownloadURL().then((url)=>{
+                        db.add({
+                            user: username,
+                            uid: uid,
+                            title: title,
+                            content: content,
+                            date: date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate(),
+                            timeStamp: date,
+                            url: url
+                        }).then(alert('저장되었습니다.')).then(()=>navigate('/'))
+                    })
+                })} else {
                     db.add({
                         user: username,
                         uid: uid,
@@ -65,21 +78,10 @@ const EditorContainer = () => {
                         content: content,
                         date: date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate(),
                         timeStamp: date,
-                        url: url
+                        
                     }).then(alert('저장되었습니다.')).then((doc)=>navigate('/firstPostPage/view?id=' + doc.id,{replace: true}))
-                })
-            })} else {
-                db.add({
-                    user: username,
-                    uid: uid,
-                    title: title,
-                    content: content,
-                    date: date.getFullYear() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getDate(),
-                    timeStamp: date,
-                    
-                }).then(alert('저장되었습니다.')).then((doc)=>navigate('/firstPostPage/view?id=' + doc.id,{replace: true}))
-            }
-        
+                }
+        }
 
 
     }

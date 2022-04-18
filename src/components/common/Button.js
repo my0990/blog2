@@ -6,7 +6,8 @@ const StyledButton = styled.button`
     background-color: ${palatte.orange[4]};
     outline: none;
     border: none;
-    
+    height: 2rem;
+    border-radius: 5px;
     &:hover {
         cursor: pointer;
         background-color:  ${palatte.orange[5]};
