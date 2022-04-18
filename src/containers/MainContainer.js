@@ -11,6 +11,7 @@ import {useInView} from "react-intersection-observer";
 
 // 로그인 되어 있으면 메인페이지 아니면 로그인 페이지 렌더
 const MainContainer = () => {
+    const navigate = useNavigate();
     const [list,setList] = useState([])
     const [lastKey,setLastKey] = useState()
     const [loading,setLoading] = useState(false)
@@ -81,14 +82,16 @@ const MainContainer = () => {
         
     }
 
-
+    const onSubmit = () => {
+        navigate('/edit')
+    }
 
     
    
     
     return(
         <>
-            <MainComponent>
+            <MainComponent onSubmit={onSubmit}>
                 {/* {list.map((a,i)=>{
                     console.log(a)
                 })} */}

@@ -52,17 +52,20 @@ const InputButton = styled.div`
             transition: 0.2s;
         }
     }
+    @media  (max-width: 768px){
+        display: none;
+    };
 `
 
 
 
-const MainComponent = ({children}) => {
+const MainComponent = ({children, onSubmit}) => {
     return (
         <Container>
             <MainTemplateBlock>
                 {children}
             </MainTemplateBlock>
-            <InputButton />
+            <InputButton onClick={onSubmit}/>
         </Container>
     )
 }
