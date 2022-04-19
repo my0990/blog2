@@ -2,6 +2,8 @@ import Responsive from "./Responsive";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import palatte from "../../lib/style/palatte";
+import logoutIcon from '../../lib/images/logout.png';
+import plusIcon from '../../lib/images/plus.png';
 
 
 
@@ -35,24 +37,43 @@ const Wrapper = styled(Responsive)`
             font-weight: bold;
             // color: red;
         }
+        @media  (max-width: 768px){
+            display: none;
+        };
     }
 
 `
-const MenuImg = styled.div`
-    background-image: url("https://img.icons8.com/material-rounded/24/000000/menu--v3.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
+// const MenuImg = styled.div`
+//     background-image: url("https://img.icons8.com/material-rounded/24/000000/menu--v3.png");
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     width: 32px;
+//     height: 32px;
+//     cursor: pointer;
 
 
-`
+// `
 
 
 
 const Spacer = styled.div`
     height: 4rem;
+`
+
+const IconWrapper = styled.div`
+    float: right;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-contents: center;
+    img{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 0.7rem;
+    }
+    @media  (min-width: 768px){
+        display: none;
+    };
 `
 
 const Header = ({onLogout,username}) => {
@@ -81,6 +102,10 @@ const Header = ({onLogout,username}) => {
                 <Wrapper>
                     <div className="left"><b>{username}</b>님</div>
                     <div className="right" onClick={onLogout}>로그아웃</div>
+                    <IconWrapper>
+                        <img className="plusIcon" src={plusIcon}/>
+                        <img className="logoutIcon" src={logoutIcon}/>
+                    </IconWrapper>
                 </Wrapper>   
             </HeaderBlock>
             <Spacer />
