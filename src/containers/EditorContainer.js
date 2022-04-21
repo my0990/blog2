@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { firestore, storage } from "../api/firebase_config";
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react';
+import Loading from "../components/common/Loading";
 
 
 //firestore 셋팅
@@ -91,7 +92,11 @@ const EditorContainer = () => {
         console.log(tempFile)
 
     }
-    
+    if(isSubmited){
+        return(
+            <Loading />
+        )
+    }
     return(
         <>
             <EditorForm value = {body} onChangeContent={onChange} onTitleChange={onTitleChange} onSubmit={onSubmit} fileChangeHandler={fileChangeHandler}/>

@@ -69,7 +69,7 @@ const MainContainer = () => {
         }
     },[inView])
 
-
+    
     if(getUser){
         username = getUser.username
         uid = getUser.uid
