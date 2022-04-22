@@ -11,6 +11,7 @@ import {useInView} from "react-intersection-observer";
 
 // 로그인 되어 있으면 메인페이지 아니면 로그인 페이지 렌더
 const MainContainer = () => {
+    const [tempList,setTempList] = useState([]);
     const navigate = useNavigate();
     const [list,setList] = useState([])
     const [lastKey,setLastKey] = useState()
@@ -28,10 +29,13 @@ const MainContainer = () => {
         .limit(3)
         .get()
         .then((collections)=>{
-            const tempList = collections.docs.map((list)=> list.data());
+            const tempList = collections.docs.map((list)=> list);
+            const tempList2 = collections.docs.map((list)=> list)
+            setTempList(tempList2)
             const tempLastDoc = collections.docs[collections.docs.length -1];
             setList(tempList);
             setLastDoc(tempLastDoc);
+            
         })
         
     
@@ -47,7 +51,8 @@ const MainContainer = () => {
         .limit(3)
         .get()
         .then((collections)=>{
-            const tempList = collections.docs.map((list) => list.data())
+            const tempList = collections.docs.map((list) => list)
+            const tempList2 = collections.docs.map((list)=> list)
             const tempLastDoc = collections.docs[collections.docs.length -1];
             setList([...list,...tempList])
             setLastDoc(tempLastDoc)
@@ -58,6 +63,11 @@ const MainContainer = () => {
         })
         console.log(list)
         
+        
+    }
+    const userData = localStorage.getItem('user')
+    if(userData){
+        const {username, uid} = JSON.parse(userData)
         
     }
     useEffect(() => {
@@ -86,6 +96,16 @@ const MainContainer = () => {
         navigate('/edit')
     }
 
+   
+    const onDelete = async (id) => {
+        let deleteConfirm = window.confirm('정말 삭제하시겠습니까?');
+        await firestore.collection("post").doc(id).delete();
+        if(deleteConfirm){
+            alert("삭제되었습니다")
+            window.location.reload();
+        }
+
+    }
     
    
     
@@ -99,19 +119,25 @@ const MainContainer = () => {
                     <div ref={ref}>
                     {list.length-1 == i ? (
                         <PostComponent 
-                            title={a.title} 
-                            username={a.user}
-                            src={a.url}
-                            text={a.content}
-                            key={i} 
+                            title={a.data().title} 
+                            username={a.data().user}
+                            src={a.data().url}
+                            text={a.data().content}
+                            key={i}
+                            deleteCheck = {a.data().uid === uid} 
+                            docId = {a.id}
+                            onDelete={onDelete}
                             />
                     ) : (
                         <PostComponent 
-                            title={a.title} 
-                            username={a.user}
-                            src={a.url}
-                            text={a.content}
+                            title={a.data().title} 
+                            username={a.data().user}
+                            src={a.data().url}
+                            text={a.data().content}
                             key={i} 
+                            deleteCheck = {a.data().uid === uid}  
+                            docId = {a.id}
+                            onDelete={onDelete}
                             />
                     )}</div>
                     // return (
@@ -129,6 +155,7 @@ const MainContainer = () => {
                     src={"https://source.unsplash.com/random"}
                     text={"text test"}/> */}
                 {/* <button onClick={()=>fetchMorePosts(lastKey)}>test</button> */}
+
             </ MainComponent>
             
         </>
